@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'tasks/css/lesson.css' %}">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="{% static 'tasks/css/bootstrap.min.css' %}">
+
+    <!-- 下面三行是前端代码高亮 -->
+    <link rel="stylesheet" href="{% static 'tasks/css/default.min.css' %}">
+    <script src="{% static 'tasks/js/highlight.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <link rel="stylesheet" href="{% static 'tasks/css/svgtextcss/a0f3498f963cb4af89a535c674d63493.css' %}">
+
+    <script src="{% static 'tasks/js/bootstrap.js' %}"></script>
+    <script src="{% static 'tasks/js/jquery-3.2.1.js' %}"></script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <header style="position: relative;min-height: 51px;">
+        <nav class="navbar navbar-default navbar-fixed-top lab-navbar" style="margin-bottom: 0">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#ul_tags" >
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="ul_tags">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button">码上行动 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            </ul>
+                        </li>
+                        <li class="active"><a href="/">爬虫练习</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="glyphicon glyphicon-user"></i>&nbsp; {{ user.username }}
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'logout' %}">退出账号</a></li>
+                                </ul>
+                            {% else %}
+                                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span>&nbsp; 登录</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="lab-footer">
+        <div class="container-fluid">
+            <div class="row lab-footer-row">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'tasks/js/bootstrap.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+Django==2.1.5
+django-tinymce4-lite==1.7.5
